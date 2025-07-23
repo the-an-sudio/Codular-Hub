@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codular Hub</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #3399ff;
+      --black: #181818;
+      --offwhite: #fffbe7;
+    }
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--black);
+      color: var(--offwhite);
+      scroll-behavior: smooth;
+    }
+    .container {
+      max-width: 700px;
+      margin: 60px auto 0;
+      padding: 40px 24px;
+      background: rgba(24, 24, 24, 0.98);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      min-height: 84vh;
+    }
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .logo img {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      object-fit: cover;
+      background-color: #55acee; /* fallback for image load fail */
+    }
+    .title {
+      text-align: center;
+      font-size: 2.5em;
+      color: var(--blue);
+      font-weight: 700;
+      margin-top: 24px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 0 #000, 0 0 4px var(--blue);
+    }
+    .subtitle {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: var(--offwhite);
+      opacity: 0.87;
+    }
+    .main-content {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .footer-nav {
+      width: 100%;
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .footer-nav button {
+      background: none;
+      border: none;
+      color: var(--blue);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 1em;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.18s, color 0.14s;
+    }
+    .footer-nav button.selected {
+      background: var(--blue);
+      color: var(--black);
+      padding: 4px 12px;
+    }
+
+    /* Smooth fade transition styles for sections */
+    .section {
+      opacity: 0;
+      visibility: hidden;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease, max-height 0.5s ease;
+      margin-top: 28px;
+    }
+    .section.active {
+      opacity: 1;
+      visibility: visible;
+      max-height: 2000px; /* large enough for content */
+    }
+
+    .playstore-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 40px;
+    }
+    .playstore-link {
+      background: linear-gradient(90deg, var(--blue) 70%, #b3e0ff 100%);
+      color: var(--black);
+      padding: 12px 38px;
+      border: none;
+      border-radius: 100px;
+      font-size: 1.12em;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+      cursor: pointer;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: background 0.3s ease;
+    }
+    .playstore-link:hover,
+    .playstore-link:focus {
+      background: linear-gradient(90deg, #287acc 70%, #8dcfff 100%);
+    }
+
+    .footer {
+      text-align: center;
+      color: #55acee;
+      font-size: 0.99em;
+      margin-top: 28px;
+      opacity: 0.62;
+      letter-spacing: 0.8px;
+    }
+    @media (max-width: 480px) {
+      .title {
+        font-size: 2em;
+      }
+      .container {
+        padding: 16px 4vw;
+      }
+      .footer {
+        font-size: 0.92em;
+      }
+      .footer-nav {
+        gap: 10px;
+      }
+    }
+  </style>
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      const buttons = document.querySelectorAll('.footer-nav button');
+
+      // Remove active from all buttons and sections
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      sections.forEach(sec => {
+        if (sec.id === sectionId) {
+          // Add active class for fade-in
+          sec.classList.add('active');
+        } else {
+          // Remove active to fade-out
+          sec.classList.remove('active');
+        }
+      });
+
+      // Highlight current button
+      const currentBtn = document.getElementById(sectionId + 'btn');
+      if (currentBtn) currentBtn.classList.add('selected');
+    }
+    window.onload = function () {
+      showSection('home');
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="main-content">
+      <div>
+        <div class="logo">
+          <!-- 
+            IMPORTANT: Replace the link below with the direct link to your hosted logo image.
+            For example: https://i.imgur.com/your-image-code.jpg
+          -->
+          <img
+            src="https://i.postimg.cc/hGvjSP1J/Codularhub-logo.jpg.jpg"
+            alt="Codular Hub Logo"
+          />
+        </div>
+        <div class="title">Codular Hub</div>
+        <div class="subtitle">
+          Crafting Modern Web Apps & Games<br />
+          By a Play Store Published Developer
+        </div>
+        <div id="home" class="section active">
+          <div class="playstore-links">
+            <a href="#" class="playstore-link" target="_blank" rel="noopener"
+              >Go to Play Store</a
+            >
+          </div>
+        </div>
+        <div id="about" class="section">
+          <h2 style="color:#3399ff;">About Us</h2>
+          <p>
+            <strong>Codular Hub</strong> is dedicated to designing and developing
+            modern web applications and innovative games. As a Play Store published
+            developer, we thrive on technology, creativity, and delivering seamless
+            digital experiences. Our mission is to help users and businesses reach
+            their full potential through robust, stylish, and user-friendly
+            solutions.
+          </p>
+        </div>
+        <div id="contact" class="section">
+          <h2 style="color:#3399ff;">Contact Us</h2>
+          <p>
+            We'd love to hear from you!<br />
+            <strong>Email:</strong> areebahmed7302@gmail.com<br />
+            <strong>Phone:</strong> 91+7302319524
+          </p>
+        </div>
+        <div id="privacy" class="section">
+          <h2 style="color:#3399ff;">Privacy Policy</h2>
+          <p>
+            At Codular Hub, we value your privacy. We do not collect personal
+            information unless you voluntarily provide it (e.g., through contact
+            forms or downloads). Any information you provide is used solely to
+            improve your experience and communicate directly with you. We do not
+            share your data with third parties.<br />
+            For more information or questions about our privacy practices, please
+            contact us at areebahmed7302@gmail.com.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <button id="homebtn" class="selected" onclick="showSection('home')">
+        Home
+      </button>
+      <button id="aboutbtn" onclick="showSection('about')">About Us</button>
+      <button id="contactbtn" onclick="showSection('contact')">Contact Us</button>
+      <button id="privacybtn" onclick="showSection('privacy')">Privacy Policy</button>
+    </div>
+    <div class="footer">© 2025 Codular Hub. All rights reserved.</div>
+  </div>
+</body>
+</html>
